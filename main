@@ -46,12 +46,14 @@ class label(event_queue):
     keys = { pig.K_1 : 1, pig.K_2 : 2, pig.K_3 : 3 , pig.K_4 : 4 , pig.K_5 :5 , pig.K_6 : 6, pig.K_7 : 7
             , pig.K_8 : 8 ,pig.K_9 : 9, pig.K_0 : 0}
     
+    values = []
+    
     def __init__(self, x,y, size = 50):
         
         self.x = x
         self.y = y
         self.size = size
-        self.values = []
+      
         
     def fill_values(self):
         
@@ -129,7 +131,7 @@ def maindeco(func):
 
 class interface():
     
-    number = label(display_width*0.7, display_height*0.5, size = 20)
+    
     
     @maindeco
     def second_menue(self):
@@ -142,9 +144,10 @@ class interface():
     @maindeco   
     def main_menue(self):
         
+        number = label(display_width*0.7, display_height*0.5, size = 20)
         
-        self.number.fill_values()
-        self.number.display()
+        number.fill_values()
+        number.display()
         
         message_display('Hauptmenü', display_width*0.5, display_width*0.15, 58 )
         
@@ -158,4 +161,6 @@ blah.main_menue()
  
 pig.quit()
 quit()
+
+
 

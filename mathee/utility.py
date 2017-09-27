@@ -1,16 +1,36 @@
 from initialise import *
+import functools
+from PIL import ImageFont
+
+def fix_point_deco(right = True, fixed_point = display_width/2):
+    #just some thing to try out   
+    def takin_params(message_func):
+        
+        
+        def wrapper(text,pos_x,pos_y,size):
+            font = ImageFont.truetype(schrift,size)
+            length = font.getsize(text)
+            if right:
+                pos_x = fixed_point - length[0]/2
+            message_func(text,pos_x,pos_y,size)   
+                       
+        return wrapper
+    
+    return takin_params
 
 def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
- 
+
+
 def message_display(text,pos_x,pos_y,size):
-    largeText = pig.font.Font('freesansbold.ttf',size)
+    largeText = pig.font.Font(schrift,size)
     TextSurf, TextRect = text_objects(text, largeText)
     TextRect.center = ((pos_x),(pos_y))
     gameDisplay.blit(TextSurf, TextRect)  
 
 
+    
 
 class event_queue():
 
@@ -54,8 +74,8 @@ class label(event_queue):
                         pass
                     
     def display(self):
-        num = ''.join(str(i) for i in self.values)
-        message_display(num, self.x,self.y, self.size)
+        num = ''.join(str(i) for i in self.values)        
+        message_display(num, self.x, self.y, self.size)
         
     def delete(self):
         self.values[:] = []
@@ -106,4 +126,3 @@ def maindeco(func):
             
             clock.tick(30)
     return structure
-

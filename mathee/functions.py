@@ -10,8 +10,8 @@ def main_menue():
     
     message_display('Hauptmenü', display_width*0.5, display_width*0.15, 58 )
     
-    button( display_width*0.34375, display_height*0.4, display_width*0.3125,display_height/6,'Training', second_menue)
-    button( display_width*0.34375, display_height*0.6, display_width*0.3125,display_height/6,'Training', second_menue)
+    #button( display_width*0.34375, display_height*0.4, display_width*0.3125,display_height/6,'Training', second_menue)
+    #button( display_width*0.34375, display_height*0.6, display_width*0.3125,display_height/6,'Training', second_menue)
 
 
 

@@ -2,30 +2,21 @@ from initialise import *
 import functools
 from PIL import ImageFont
 
-def fix_point_deco(right = True, fixed_point = display_width/2):
-    #just some thing to try out   
-    def takin_params(message_func):
-        
-        
-        def wrapper(text,pos_x,pos_y,size):
-            font = ImageFont.truetype(schrift,size)
-            length = font.getsize(text)
-            if right:
-                pos_x = fixed_point - length[0]/2
-            message_func(text,pos_x,pos_y,size)   
-                       
-        return wrapper
-    
-    return takin_params
+
 
 def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
 
 
-def message_display(text,pos_x,pos_y,size):
-    largeText = pig.font.Font(schrift,size)
+def message_display(text,pos_x,pos_y,tamano, fix_right = 0, fix_left = 0, fixed_point = display_width/2 ):
+    
+    largeText = pig.font.Font(schrift,tamano)
     TextSurf, TextRect = text_objects(text, largeText)
+    if fix_right == 1: 
+            
+            length = len(text)*tamano
+            pos_x = fixed_point - length/2
     TextRect.center = ((pos_x),(pos_y))
     gameDisplay.blit(TextSurf, TextRect)  
 

@@ -1,4 +1,5 @@
 import pygame as pig
+import operator as op
 
 pig.init()
 
@@ -16,3 +17,11 @@ red = (255,0,0)
 
 
 clock = pig.time.Clock()
+
+
+operation = {
+        '+' : op.add,
+        '-' : op.sub,
+        '*' : op.mul,
+        '/' : op.truediv,
+        '%' : op.mod}

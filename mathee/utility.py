@@ -1,16 +1,25 @@
 from initialise import *
+import functools
+
 
 def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
- 
-def message_display(text,pos_x,pos_y,size):
-    largeText = pig.font.Font('freesansbold.ttf',size)
+
+
+def message_display(text,pos_x,pos_y,size = 50, fix_right = 0, fix_left = 0, fixed_point = display_width/2 ):
+    
+    largeText = pig.font.Font(schrift,size)
     TextSurf, TextRect = text_objects(text, largeText)
+    if fix_right == 1: 
+            
+            length = len(text)*size*0.8
+            pos_x = fixed_point - length/2
     TextRect.center = ((pos_x),(pos_y))
     gameDisplay.blit(TextSurf, TextRect)  
 
 
+    
 
 class event_queue():
 
@@ -54,11 +63,11 @@ class label(event_queue):
                         pass
                     
     def display(self):
-        num = ''.join(str(i) for i in self.values)
-        message_display(num, self.x,self.y, self.size)
-        
-    def delete(self):
-        self.values[:] = []
+        num = ''.join(str(i) for i in self.values)        
+        message_display(num, self.x, self.y, self.size)
+    @classmethod    
+    def delete(cls):
+        cls.values[:] = []
        
   
 def button(x,y,w,h, text, func = lambda : None, size = 30):
@@ -88,7 +97,7 @@ def button(x,y,w,h, text, func = lambda : None, size = 30):
 def maindeco(func):
  
     
-    def structure():
+    def structure(*args):
         while 1:
             
             event_queue.events_update()
@@ -100,10 +109,9 @@ def maindeco(func):
                     quit()
             
             gameDisplay.fill(white)
-            func()
+            func(*args)
 
             pig.display.update()      
             
             clock.tick(30)
     return structure
-

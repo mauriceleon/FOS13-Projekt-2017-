@@ -62,9 +62,17 @@ class label(event_queue):
                         #index out of bounds
                         pass
                     
+    @property               
+    def number(self):
+        num = 0
+        for i,lit in enumerate(self.values):
+            num += lit*10**(len(self.values) -i-1)
+        return num     
+                                   
     def display(self):
         num = ''.join(str(i) for i in self.values)        
         message_display(num, self.x, self.y, self.size)
+        
     @classmethod    
     def delete(cls):
         cls.values[:] = []

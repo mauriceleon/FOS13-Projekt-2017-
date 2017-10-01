@@ -22,9 +22,7 @@ def second_menue():
     button( display_width*0.1, display_height*0.5, display_width*0.3125,display_height/6,'*', main_menue, size = 60)
     button( display_width*0.55, display_height*0.5, display_width*0.3125,display_height/6,'/', main_menue, size = 60)
 
-    
 class base_task(object):
-    
     
     size = 50
     Input = label(display_width*0.7, display_height*0.5, size = 40)
@@ -34,7 +32,7 @@ class base_task(object):
         
         self.task_num = task_num
         self.mixed = mixed
-        #a list containing operator dict keys i.e ['+','-','*', '/']
+        #a list containing operator dict keys
         self.operations = operations
         self.input = label(display_width*0.7, display_height*0.5, size = 40)
         self.record = []
@@ -53,9 +51,9 @@ class base_task(object):
     
     def operation_to_string(self):
                 
-        self.term = ''.join(str(a) + self.operations[i] for i,a in enumerate(self.nums[:-1])) 
-        self.term += str(self.nums[-1]) + ' ='
-        return self.term   
+        self.term = ''.join(str(a) + self.operations[i] for i,a in enumerate(self.nums[:-1])) + str(self.nums[-1])
+        self.equation =  self.term + ' ='
+        return self.equation  
         
          
     @maindeco
@@ -69,25 +67,13 @@ class base_task(object):
    
     def get_result(self):
         
-        ergebnis = 0
-        zwischenergebnis = 0
-        for i,operator in enumerate(self.operations):
-            
-                if not(i == 0) and (self.operations[i-1] == '*' or self.operations[i-1] == '/'):
-                    zwischenergebnis = operation[operator](zwischenergebnis,self.nums[i +1])
-                    ergebnis +=  zwischenergebnis 
-                       
-                else:  
-                    zwischenergebnis =  operation[operator](self.nums[i],self.nums[i +1])  
-                    ergebnis +=  zwischenergebnis
-                
-
-        return ergebnis
-                                             
+            return eval(self.term)
+                                          
     
     def verify(self):
        
-       if self.Input.values == self.get_result():
+       if self.Input.number == self.get_result():
+
            return 1
        else:
            return 0
@@ -101,10 +87,8 @@ class base_task(object):
             self.generate_numbers()
             self.current_task += 1           
             self.operation_to_string
-            
         else:
             main_menue()
-            
     def init(self):
         
         self.generate_numbers()
@@ -112,7 +96,5 @@ class base_task(object):
         
         
 add = base_task(['+'])
-add.init()        
-        
-        
+add.init()     
         

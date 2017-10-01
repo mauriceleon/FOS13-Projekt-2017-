@@ -22,7 +22,9 @@ def second_menue():
     button( display_width*0.1, display_height*0.5, display_width*0.3125,display_height/6,'*', main_menue, size = 60)
     button( display_width*0.55, display_height*0.5, display_width*0.3125,display_height/6,'/', main_menue, size = 60)
 
+    
 class base_task(object):
+    
     
     size = 50
     Input = label(display_width*0.7, display_height*0.5, size = 40)
@@ -32,7 +34,7 @@ class base_task(object):
         
         self.task_num = task_num
         self.mixed = mixed
-        #a list containing operator dict keys
+        #a list containing operator dict keys i.e ['+','-','*', '/']
         self.operations = operations
         self.input = label(display_width*0.7, display_height*0.5, size = 40)
         self.record = []
@@ -81,8 +83,7 @@ class base_task(object):
                 
 
         return ergebnis
-                    
-                         
+                                             
     
     def verify(self):
        
@@ -100,8 +101,10 @@ class base_task(object):
             self.generate_numbers()
             self.current_task += 1           
             self.operation_to_string
+            
         else:
             main_menue()
+            
     def init(self):
         
         self.generate_numbers()

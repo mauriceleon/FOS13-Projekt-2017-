@@ -37,7 +37,9 @@ class base_task(object):
         self.input = label(display_width*0.7, display_height*0.5, size = 40)
         self.record = []
         self.current_task = 0
-    
+        
+        self.init()
+        
     def generate_numbers(self, start = 0, stop = 20):
         
         self.nums = []
@@ -96,5 +98,5 @@ class base_task(object):
         
         
 add = base_task(['+'])
-add.init()     
+   
         
